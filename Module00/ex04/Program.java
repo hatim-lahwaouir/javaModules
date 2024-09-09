@@ -23,53 +23,90 @@ public class Program{
         }
 
 
-    static  int [] [] countCharacters(String s){
+    static  int [] countCharacters(String s){
         int len = s.length() - 2;
 
-        int max = 0;
-        int min = 999;
 
         int [] arr = new int [26];
 
-        int [][] res = new int [11][26];
 
         for (int i = 0; i < len;i++){
             char c = s.charAt(i);
             arr[c -  'A']++;
-
-            if (max < arr[c - 'A'])
-                max =  arr[c - 'A'];
-            if (min > arr[c - 'A'])
-                min =  arr[c - 'A'];
         }
     
-        System.out.printf("%d %d\n", max, min);
-        for (int i = 0; i < 26; i++){
-            if (arr[i] == 0)
-                continue;
-
-            float prop = ((float)arr[i] * 100 ) / (float)max;
-            prop /= 10;
-        
-            res [(int)prop][i] = 1;
-            // System.out.printf("%f ", prop);
+        return arr;
+    }
+    public static int getMax(int [] arr){
+        int len = arr.length;
+        int max = arr[0];
+        for (int i = 0;i < len;i++){
+            if (max < arr[i])
+                max = arr[i];
         }
+        return max;
+    }
 
-        for (int i = 1; i < 11; i++){
-            for (int j = 0; j < 26; j++){
-                if (res[i][j] != 0)
-                    System.out.printf("# ");
+    public static int [] getResults(int [] count, int max){
+        int [] res = new int [10 * 30];
+        int [] arr = new int [26];
+        for (int i = 0; i < 26; i++)
+            arr[i] = ('A' + i);
+
+
+        for (int i = 1; i < 26; i++){
+
+            if (count[i - 1] < count[i])
+            {
+                int tmp = count[i];
+                count[i] = count[i - 1];
+                count[i - 1] = tmp;
+
+
+                tmp = arr[i];
+                arr[i] = arr[i - 1];
+                arr[i - 1] = tmp;
+
+                i = 0;
             }
-            System.out.print('\n');
         }
 
-
-        
-
+        for (int i = 0; i < 10; i++){
+            res[i] = arr[i];
+            res[i + 10] = count[i];
+            res[i + 20] = (count[i] * 10) / max;
+        }
         return res;
     }
-    
-    
+
+
+    public static void printRes(int [] res){
+
+
+        for(int i = 0; i <= 10; i++){
+
+            for (int k = 0; k < i; k++){
+                System.out.printf(" # ");
+            }
+
+            int a = res[i + 20];
+            for (int j = i; j < 10 && res[j + 20] == a; j++)
+            {
+                System.out.printf(" %d ", (int)res[j + 10]);
+            }
+            System.out.printf("\n");
+
+            
+        }
+
+        for (int i = 0; i< 10 ;i ++)
+            System.out.printf(" %c ", res[i]);
+        System.out.print("\n");
+        for (int i = 0; i< 10 ;i ++)
+            System.out.printf(" %d ", res[i + 10]);
+    }
+
+
     public static void main(String[] args) {
         String inp;
 
@@ -78,7 +115,9 @@ public class Program{
             System.out.printf("-> ");
             inp = scanner.nextLine();
             parseInput(inp);
-            countCharacters(inp);
+            int [] count = countCharacters(inp);
+            int [] res = getResults(count, getMax(count));
+            printRes(res);
         }
         catch ( Exception error ) {
 
