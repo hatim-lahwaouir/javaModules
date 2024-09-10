@@ -82,28 +82,30 @@ public class Program{
 
     public static void printRes(int [] res){
 
+        int current_index = 0;
 
-        for(int i = 0; i <= 10; i++){
+        for (int i = 10; i >= 0; i--){
 
-            for (int k = 0; k < i; k++){
-                System.out.printf(" # ");
-            }
-
-            int a = res[i + 20];
-            for (int j = i; j < 10 && res[j + 20] == a; j++)
+            while(current_index < 10 &&res[current_index + 20] == i)
             {
-                System.out.printf(" %d ", (int)res[j + 10]);
+                if (res[current_index + 10] <= 10)
+                    System.out.print(" ");
+                System.out.printf(" %d", res[current_index + 10]);
+                current_index++;
             }
-            System.out.printf("\n");
-
-            
+            System.out.print("\n");
+            if (i != 0)
+            {
+                for (int j = 0; j < current_index; j++){
+                    System.out.print("  #");
+                }
+            }
         }
 
-        for (int i = 0; i< 10 ;i ++)
-            System.out.printf(" %c ", res[i]);
+        for (int i = 0; i < 10; i++){
+            System.out.printf("  %c", res[i]);
+        }
         System.out.print("\n");
-        for (int i = 0; i< 10 ;i ++)
-            System.out.printf(" %d ", res[i + 10]);
     }
 
 
