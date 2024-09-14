@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import javax.swing.text.Style;
+
 class Program{
 
 
@@ -209,16 +211,16 @@ class Program{
 
     static public void printResults(String [] students, int [] timTable, int [][] attendance, String [] weekDays){
         
-        System.out.printf("          ");
+        for (int i = 0; i < 10; i++)
+            System.out.printf(" ");
         for (int i = 0; i < 30; i++){
             if (timTable[i % 7] == 1_000_000)
                 continue;
             int hours = timTable[i %  7];
-            int offset = 1;
-            for (int h = 1; h <= 6; h++){
-                if (hours % offset == 1)
+
+            for (int h = 1; h < 6; h++){
+                if (hours % 10 != 0)
                     System.out.printf("%d:00 %s %d|", h, weekDays[i % 7], i + 1);
-                offset *= 10;
                 hours /= 10;
             }
         }
@@ -228,26 +230,32 @@ class Program{
         for (int i = 0; i < 10; i++){
             if (students[i] == null)
                 continue;
-            System.out.printf("%s     ", students[i]);
+            System.out.printf("%s", students[i]);
+            for (int k = students[i].length(); k < 10; k++)
+                System.out.printf(" ");
             for (int j = 0; j < 30; j++){
                 if (timTable[j % 7] == 1_000_000)
                     continue;
                 int hours = attendance[i][j];
                 int timeOfclass = timTable[j % 7];
 
-                for (int h = 1; h <= 6; h++){
+                for (int h = 1; h < 6; h++){
                     if (hours % 10 != 0 && timeOfclass % 10 != 0)
                     {
                         boolean was_here = (hours  % 10) == 1;
+                        if (j > 8)
+                            System.out.print(" ");
                         if (was_here)
-                        //                            3:00 MO 1
                             System.out.printf("        1|");
                         else
                             System.out.printf("       -1|");
                     }
-                    if (timeOfclass % 10 != 0 && hours % 10 == 0)
+                    else if (timeOfclass % 10 != 0)
+                    {
+                        if (j > 8)
+                            System.out.print(" ");
                         System.out.printf("         |");
-
+                    }
                     hours /= 10;
                     timeOfclass /= 10;
                 }
@@ -266,17 +274,7 @@ class Program{
             int [][] attendance = getAttendance(scanner, timeTable, students);
 
 
-            // for (int i = 0; i< 10; i++){
-
-            //     for (int j = 0; j < 30; j++){
-            //         if (attendance[i][j] != 1_000_000)
-            //         System.out.printf("%d %d %d| ",i,j, attendance[i][j]);
-                    
-            //     }
-
-            // }
             printResults(students, timeTable, attendance, weekDays);
-            // PrintInfo(timeTable, students, attendance);
 
         }
         catch(Exception e){
