@@ -32,7 +32,7 @@ class Program{
             while (true)
             {
                 
-                String name = scanner.nextLine();
+                String name = scanner.next();
                 if (name.equals("."))
                     break;
                 
@@ -50,37 +50,34 @@ class Program{
     }
 
 
-    static public void checkTime(String date , String [] weekDays) throws Exception
+    static public void checkTime(String hour, String day , String [] weekDays) throws Exception
     {
 
-        if (date.length() != 4)
-            throw new Exception("Invalid date format");
-
-
-        char h = date.charAt(0); 
-        if (h > '6' || h < '1')
-            throw new Exception("Invalid time format");
+        if (hour.length() != 1 && (hour.charAt(0) >= 1 && hour.charAt(0) <= 6)){
+            throw new Exception("Invalid hour format  ` " + hour + "`");
+        }
         
         boolean matche = false;
         for (int i  = 0;  i < weekDays.length; i++){
       
-            if (weekDays[i].charAt(0) == date.charAt(2) && weekDays[i].charAt(1) == date.charAt(3))
+            if (weekDays[i].equals(day))
                 matche = true;
         }
         
         if (!matche)
-            throw new Exception("Invalid day !");
+            throw new Exception("Invalid day ! `" + day + "`");
     
     }
-    static public void setTime(String date, int [] timeTable, String [] weekDays){
+
+    static public void setTime(String hour, String weekDay, int [] timeTable, String [] weekDays){
         int day = 0;
         for (;  day < weekDays.length; day++){
       
-            if (weekDays[day].charAt(0) == date.charAt(2) && weekDays[day].charAt(1) == date.charAt(3))
+            if (weekDays[day].equals(weekDay))
                 break;
         }
 
-        int time = (date.charAt(0) - '0');
+        int time = (hour.charAt(0) - '0');
 
         int offset = 1;
         for (int i = 1; i < time; i++){
@@ -106,12 +103,14 @@ class Program{
         while (true)
         {
             
-            String date  = scanner.nextLine();
+            String hour  = scanner.next();
 
-            if (date.equals("."))
+            if (hour.equals("."))
                 break;
-            checkTime(date, weekDays);
-            setTime(date, timeTable, weekDays);
+            String day  = scanner.next();
+            
+            checkTime(hour, day, weekDays);
+            setTime(hour, day , timeTable, weekDays);
         }
 
         return timeTable;
