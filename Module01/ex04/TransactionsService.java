@@ -11,7 +11,7 @@ class TransactionsService{
 
     public int getUserBalence(int id) {
         try{
-            return users.get(id).getBalence();
+            return users.getById(id).getBalence();
         }
         catch (UserNotFoundException e){
             System.out.printf("No user with this Id %d\n", id);
@@ -24,8 +24,8 @@ class TransactionsService{
     public void transferTransaction(int senderId, int recipientId, int amount) throws IllegalTransactionException , UserNotFoundException{
         User sender;
         User recipient;
-        sender = users.get(senderId);
-        recipient = users.get(recipientId);
+        sender = users.getById(senderId);
+        recipient = users.getById(recipientId);
 
         Transaction senderTr = new Transaction(sender, recipient, true, -amount);
         
@@ -40,13 +40,13 @@ class TransactionsService{
 
 
     public Transaction [] getTransactionsOfUser(int id) throws UserNotFoundException{
-        User user = users.get(id);
+        User user = users.getById(id);
         return user.myTransactions.toArray();
     }
 
 
     public void removeTransactionOfUser(int id, String transactionId) throws UserNotFoundException, TransactionNotFoundException{
-        User user = users.get(id);
+        User user = users.getById(id);
         User recipient = user.myTransactions.get(transactionId).recipient;
         user.myTransactions.remove(transactionId);
         

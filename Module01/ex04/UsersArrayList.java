@@ -17,13 +17,22 @@ class UsersArrayList implements UsersList{
 
 
     @Override
-    public User get(int index)  throws UserNotFoundException {
+    public User getByIndex(int index)  throws UserNotFoundException {
         if (index < 0 || index >= users.size() || users.get(index) == null)
             throw new UserNotFoundException();
         
         return users.get(index);
     }
 
+
+    @Override
+    public User getById(int id)  throws UserNotFoundException {
+        for (int i =0 ;i < users.size(); i++){
+            if (users.get(i).getId() == id)
+                return users.get(i);
+        }        
+        throw new UserNotFoundException();
+    }
     @Override
     public int size() {
         return this.n_users;
