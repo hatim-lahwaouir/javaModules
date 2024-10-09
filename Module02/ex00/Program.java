@@ -2,7 +2,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 
@@ -89,9 +89,10 @@ class Program{
     public static void main(String [] args){
 
         Map<String, String> sigToType = readSignatures();
+        int offset = 0;
 
         try (Scanner scanner = new Scanner(System.in)){
-            
+            FileOutputStream result = new FileOutputStream("result.txt"); 
             while (true)
             {
                 System.out.printf("-> ");
@@ -104,13 +105,16 @@ class Program{
                 String sig = getSingnature(file);
                 
                 String type = sigToType.get(sig);
-                System.out.printf("%s\n", sig);
+
                 if (type == null)
                     continue;
 
-                System.out.printf("PROCESSED -> %s\n", type);
-            }
+                type += "\n";
+                System.out.printf("PROCESSED\n");
 
+                result.write(type.getBytes(), 0, type.length());
+                offset += type.length() + 1;
+            }
         }
         catch (IOException e){
             System.err.println(e.getMessage());
