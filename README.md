@@ -7,3 +7,7 @@
 
 ## + Module 01: OOP, Collections
 ### In this module, you will learn how to model the operation of various collections correctly, and create a full-scale money transfer application.
+
+
+## + Module 02: IO package, Files
+### In this module you will learn how to use input/output in Java and implement programs to manipulate a file system.
