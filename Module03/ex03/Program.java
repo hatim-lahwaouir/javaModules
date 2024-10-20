@@ -14,7 +14,6 @@ class Program{
     static int getInfo(String [] args, String info){
 
         int count;
-        String arg = args[0];
         for (int i = 0; i < args.length; i++)
         {
                 if (args[i].startsWith(info)) {
