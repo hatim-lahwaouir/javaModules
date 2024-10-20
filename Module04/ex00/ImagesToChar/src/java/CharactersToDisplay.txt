@@ -1,1 +1,0 @@
---ImagePath=/goinfre/hlahwaou/javaModules/Module04/ex00/ImagesToChar/src/../it.bmp

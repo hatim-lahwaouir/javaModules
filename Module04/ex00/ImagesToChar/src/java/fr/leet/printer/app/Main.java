@@ -1,13 +1,12 @@
-package fr._42.printer.app;
+package fr.leet.printer.app;
+import fr.leet.printer.logic.Logic;
 
-
-import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-class ImagePath{
+
+class Main{
     static void exit(String err){
         System.err.println(err);
         System.exit(-1);
@@ -28,12 +27,7 @@ class ImagePath{
     }
 
 
-    public static void main(String [] args){
-        if (args.length != 1){
-            exit("Invalid args!");
-        }
-
-        String path = getInfo(args, "--ImagePath=");
+    static String handelImage(String path){
         Path imagePath = Paths.get(path).toAbsolutePath();
 
 
@@ -45,14 +39,29 @@ class ImagePath{
             exit("this Path is for a directory " + path);
         if (!Files.isReadable(imagePath))
             exit("this Image can't be read " + path);
+        
+        return imagePath.toString();
+    }
 
-
-        try (FileWriter fw = new FileWriter("ImagePath.txt")) {
-            fw.write("ImagePath=" + imagePath.toString() + "\n");
-        } catch (IOException e) {
-            exit("Failed to create File  ImagePath.txt");
+    public static void main(String [] args){
+        if (args.length != 3){
+            exit("Invalid args!\nExample --ImagePath=....  --CWC=.  --CWC=.\nOne Character to represent white and black color\n");
         }
 
+        String CWC = getInfo(args, "--CWC=");
+        String CBC = getInfo(args, "--CBC=");
+
+        if (CWC.length() != 1 || CBC.length() != 1)
+            exit("Invalid args!\nExample --ImagePath=....  --CWC=.  --CWC=.\nOne Character to represent white and black color\n");
+
+        String pathFromArgs = getInfo(args, "--ImagePath=");
+    
+        String imagePath = handelImage(pathFromArgs);
+    
+
+
+        
+        Logic.print(CWC.charAt(0), CBC.charAt(0), imagePath);
     }
 
 }
