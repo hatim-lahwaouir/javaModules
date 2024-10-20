@@ -14,3 +14,7 @@
 
 ## + Module 03: Threads
 ### In this module you will learn how to use basic multithreading mechanisms in Java.
+
+
+## + Module 04 Packages and JAR files
+### In this module you will learn to create library archives and use external libraries.
