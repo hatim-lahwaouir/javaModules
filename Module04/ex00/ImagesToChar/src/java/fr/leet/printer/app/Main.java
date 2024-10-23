@@ -45,14 +45,14 @@ class Main{
 
     public static void main(String [] args){
         if (args.length != 3){
-            exit("Invalid args!\nExample --ImagePath=....  --CWC=.  --CWC=.\nOne Character to represent white and black color\n");
+            exit("Invalid args!\nExample --ImagePath=....  --CWC=.  --CBC=.\nOne Character to represent white and black color\n");
         }
 
         String CWC = getInfo(args, "--CWC=");
         String CBC = getInfo(args, "--CBC=");
 
         if (CWC.length() != 1 || CBC.length() != 1)
-            exit("Invalid args!\nExample --ImagePath=....  --CWC=.  --CWC=.\nOne Character to represent white and black color\n");
+            exit("Invalid args!\nExample --ImagePath=....  --CWC=.  --CBC=.\nOne Character to represent white and black color\n");
 
         String pathFromArgs = getInfo(args, "--ImagePath=");
     
