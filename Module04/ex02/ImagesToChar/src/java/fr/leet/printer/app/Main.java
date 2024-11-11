@@ -6,26 +6,30 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
+
+
+// jcomander 
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.Parameters;
+import com.beust.jcommander.JCommander;
+
+
+
+
+@Parameters(separators = "=")
 class Main{
+  
+    @Parameter(names = "--white")
+        String white;
+  
+    @Parameter(names = "--black")
+        String black;
+
+
     static void exit(String err){
         System.err.println(err);
         System.exit(-1);
     }
-
-    static String getInfo(String [] args, String info){
-
-        for (int i = 0; i < args.length; i++)
-        {
-                if (args[i].startsWith(info)) {
-                String value = args[i].substring(info.length());
-                if (value.length() == 0)
-                    exit("Invalid argument  " + value);
-                return value;
-            }
-        }
-        return null;
-    }
-
 
     static String handelImage(String path){
         Path imagePath = Paths.get(path).toAbsolutePath();
@@ -43,25 +47,29 @@ class Main{
         return imagePath.toString();
     }
 
-    public static void main(String [] args){
-        if (args.length != 2){
-            exit("Invalid args!\nExample  --CWC=.  --CBC=.\nOne Character to represent white and black color\n");
+    public static void main(String [] argv){
+        if (argv.length != 2){
+            exit("Invalid args!\nExample  --white=RED --black=GREEN\n");
         }
 
-        String CWC = getInfo(args, "--CWC=");
-        String CBC = getInfo(args, "--CBC=");
+        Main main = new Main();
+        try{
+            JCommander.newBuilder()
+                .addObject(main)
+                .build()
+                .parse(argv);
 
-        if (CWC.length() != 1 || CBC.length() != 1)
-            exit("Invalid args!\nExample   --CWC=.  --CBC=.\nOne Character to represent white and black color\n");
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        main.run();
 
-        // String pathFromArgs = getInfo(args, "--ImagePath=");
-    
-        String imagePath = handelImage("target/resources/image.bmp");
-    
-
-
-        
-        Logic.print(CWC.charAt(0), CBC.charAt(0), imagePath);
     }
+    public void run() {
+        String imagePath = handelImage("target/resources/image.bmp");
 
+
+        Logic.print(this.white, this.black, imagePath);
+    }
 }
