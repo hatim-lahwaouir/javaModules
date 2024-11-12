@@ -1,7 +1,10 @@
 javac -d ./target src/java/fr/leet/printer/app/*.java src/java/fr/leet/printer/logic/*.java -cp lib/jcommander-1.82.jar
 
-
 cp -R src/resources target/resources
+
+unzip -f lib/jcommander-1.82.jar -d ./target
+unzip -f lib/JColor-5.5.1.jar -d ./target
+
 jar cmvf src/manifest.txt target/images-to-chars-printer.jar  -C ./target . 
 
 
