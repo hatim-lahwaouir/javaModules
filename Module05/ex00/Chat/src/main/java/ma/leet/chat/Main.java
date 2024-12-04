@@ -10,9 +10,9 @@ import java.sql.Statement;
 
 
 
-import models.User;
-import models.ChatRoom;
-import models.Message;
+import ma.leet.chat.models.User;
+import ma.leet.chat.models.ChatRoom;
+import ma.leet.chat.models.Message;
 
 
 import java.io.File;  

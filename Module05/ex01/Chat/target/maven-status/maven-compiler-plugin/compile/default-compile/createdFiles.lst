@@ -1,0 +1,6 @@
+ma/leet/chat/models/User.class
+ma/leet/chat/repository/MessagesRepositoryJdbcImpl.class
+ma/leet/chat/models/Message.class
+ma/leet/chat/models/ChatRoom.class
+ma/leet/chat/app/Program.class
+ma/leet/chat/repository/MessagesRepository.class
