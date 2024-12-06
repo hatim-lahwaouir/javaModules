@@ -1,0 +1,6 @@
+INSERT INTO  product (price, name) VALUES (500, 'Product1')
+INSERT INTO  product (price, name) VALUES (400, 'Product2')
+INSERT INTO  product (price, name) VALUES (100, 'Product3')
+INSERT INTO  product (price, name) VALUES (700, 'Product4')
+INSERT INTO  product (price, name) VALUES (300, 'Product5')
+INSERT INTO  product (price, name) VALUES (800, 'Product6')
