@@ -1,0 +1,4 @@
+ma/leet/services/UsersServiceImplTest.class
+ProductsRepositoryJdbcImplTest.class
+ma/leet/repositories/EmbeddedDataSourceTest.class
+ma/leet/numbers/NumberWorkerTest.class

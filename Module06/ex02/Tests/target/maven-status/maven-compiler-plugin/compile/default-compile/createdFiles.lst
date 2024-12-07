@@ -1,0 +1,4 @@
+ma/leet/models/Product.class
+ma/leet/numbers/NumberWorker.class
+ma/leet/repositories/ProductsReposutoryJdbcImpl.class
+ma/leet/repositories/ProductsRepository.class

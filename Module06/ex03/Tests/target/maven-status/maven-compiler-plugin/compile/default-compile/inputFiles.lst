@@ -1,0 +1,9 @@
+/goinfre/hlahwaou/javaModules/Module06/ex03/Tests/src/main/java/ma/leet/repositories/ProductsRepository.java
+/goinfre/hlahwaou/javaModules/Module06/ex03/Tests/src/main/java/ma/leet/models/Product.java
+/goinfre/hlahwaou/javaModules/Module06/ex03/Tests/src/main/java/ma/leet/repositories/ProductsReposutoryJdbcImpl.java
+/goinfre/hlahwaou/javaModules/Module06/ex03/Tests/src/main/java/ma/leet/services/UsersServiceImpl.java
+/goinfre/hlahwaou/javaModules/Module06/ex03/Tests/src/main/java/ma/leet/repositories/UsersRepository.java
+/goinfre/hlahwaou/javaModules/Module06/ex03/Tests/src/main/java/ma/leet/models/User.java
+/goinfre/hlahwaou/javaModules/Module06/ex03/Tests/src/main/java/ma/leet/exceptions/EntityNotFoundException.java
+/goinfre/hlahwaou/javaModules/Module06/ex03/Tests/src/main/java/ma/leet/numbers/NumberWorker.java
+/goinfre/hlahwaou/javaModules/Module06/ex03/Tests/src/main/java/ma/leet/exceptions/AlreadyAuthenticatedException.java
